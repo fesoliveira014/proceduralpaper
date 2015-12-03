@@ -1,0 +1,47 @@
+start -> S(12,12,12){lot}
+lot -> comp(){top|left_facade|front|right_facade|back|bottom}
+back -> wall
+
+front -> subDiv("Y",6,6){gfloor|ffloor}:0.6
+front -> subDiv("Y",4,4,4){gfloor|ffloor|ffloor}:0.4
+left_facade -> subDiv("Y",6,6){lfloor|lfloor}:0.6
+left_facade -> subDiv("Y",4,4,4){lfloor|lfloor|lfloor}:0.4
+
+right_facade -> subDiv("Y",6,6){rfloor|rfloor}:0.6
+right_facade -> subDiv("Y",4,4,4){rfloor|rfloor|rfloor}:0.4
+
+gfloor -> subDiv("X",9,3){ftiles|entrance}:0.6
+gfloor -> subDiv("X",3,9){entrance|ftiles}:0.4
+ffloor -> ftiles
+ftiles -> repeat("X",3){ftile}
+
+lfloor -> ltiles
+ltiles -> repeat("Z",3){ltile}
+
+rfloor -> rtiles
+rtiles -> repeat("Z",3){rtile}
+
+
+ftile  -> subDiv("X",0.5,2,0.5){fwall|fwindow_area|fwall}
+ltile  -> subDiv("Z",0.5,2,0.5){lwall|lwindow_area|lwall}
+rtile  -> subDiv("Z",0.5,2,0.5){rwall|rwindow_area|rwall}
+
+fwindow_area -> subDiv("Y",1.2,4,0.8){fwall|fwindow|fwall}:0.6
+fwindow_area -> subDiv("Y",1.2,2,0.8){fwall|fwindow|fwall}:0.4
+
+lwindow_area -> subDiv("Y",1.2,4,0.8){lwall|lwindow|lwall}:0.6
+lwindow_area -> subDiv("Y",1.2,2,0.8){lwall|lwindow|lwall}:0.4
+
+rwindow_area -> subDiv("Y",1.2,4,0.8){rwall|rwindow|rwall}:0.6
+rwindow_area -> subDiv("Y",1.2,2,0.8){rwall|rwindow|rwall}:0.4
+fwindow -> window
+lwindow -> window
+rwindow -> window
+
+fwall -> wall
+lwall -> wall
+rwall -> wall
+
+entrance -> subDiv("X",0.5,2,0.5){wall|door_area|wall}
+door_area -> subDiv("Y",5,1){door|wall} :0.6
+door_area -> subDiv("Y",3,1){door|wall} :0.4
