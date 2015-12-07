@@ -1,0 +1,12 @@
+start -> S(10,10,10){box}
+box -> comp(){left|right|top|bottom|front|back}
+left -> subDiv("Y",2,2,2,2,2){floor1|floor2|floor3|floor4|floor5}
+right -> subDiv("Y",2,2,2,2,2){floor1|floor2|floor3|floor4|floor5}
+front -> subDiv("Y",2,2,2,2,2){floor1|floor2|floor3|floor4|floor5}
+back -> subDiv("Y",2,2,2,2,2){floor1|floor2|floor3|floor4|floor5}
+floor1 -> subDiv("X",4,2,4){wall|door|wall}
+floor2 -> subDiv("X",2,2,2,2,2){window_area1|window_area1|window_area1|window_area1|window_area1}
+floor3 -> subDiv("X",2,2,2,2,2){window_area1|window_area1|window_area1|window_area1|window_area1}
+floor4 -> subDiv("X",2,2,2,2,2){window_area1|window_area1|window_area1|window_area1|window_area1}
+floor5 -> subDiv("X",2,2,2,2,2){window_area1|window_area1|window_area1|window_area1|window_area1}
+window_area1 -> subDiv("X",0.4,1.6){wall|window}
