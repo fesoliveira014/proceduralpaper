@@ -47,6 +47,8 @@ class ModelBuilder():
                     self.comp(rules[index].childName, currentShape)
                 elif function == "S":
                     self.s(rules[index].parameters, rules[index].childName, currentShape)
+                elif function == "T":
+                    self.t(rules[index].parameters, rules[index].childName, currentShape)
                 elif function == "repeat":
                     self.repeat(rules[index].parameters, rules[index].childName, currentShape)
                 elif function == "subDiv":
@@ -182,6 +184,18 @@ class ModelBuilder():
             shape = common.Shape(childNames[0])
             shape.setPosition(parent.position.tolist())
             shape.setScale(scale)
+
+            parent.children.append(shape)
+            self.queue.put(shape)
+
+    def t(self, parameters, childNames, parent):
+        translate = [float(parameters[0]), float(parameters[1]), float(parameters[2])]
+        if len(childNames) == 0:
+            parent.setPosition(translate)
+        else:
+            shape = common.Shape(childNames[0])
+            shape.setScale(parent.position.tolist())
+            shape.setPosition(translate)
 
             parent.children.append(shape)
             self.queue.put(shape)

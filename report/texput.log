@@ -1,0 +1,19 @@
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2015.5.10)  9 DEC 2015 11:16
+entering extended mode
+**.\relatório.tex .\references.bib
+
+! Emergency stop.
+<*> .\relat
+           ório.tex .\references.bib
+End of file on the terminal!
+
+ 
+Here is how much of TeX's memory you used:
+ 0 strings out of 493921
+ 1 string characters out of 3146477
+ 49031 words of memory out of 3000000
+ 3400 multiletter control sequences out of 15000+200000
+ 3640 words of font info for 14 fonts, out of 3000000 for 9000
+ 841 hyphenation exceptions out of 8191
+ 0i,0n,0p,1b,6s stack positions out of 5000i,500n,10000p,200000b,50000s
+!  ==> Fatal error occurred, no output PDF file produced!

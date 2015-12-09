@@ -1,0 +1,32 @@
+\begin{thebibliography}{1}
+
+\bibitem{Muller:2006:PMB:1141911.1141931}
+P.~M\"{u}ller, P.~Wonka, S.~Haegler, A.~Ulmer, and L.~Van~Gool.
+\newblock Procedural modeling of buildings.
+\newblock {\em ACM Trans. Graph.}, 25(3):614--623, July 2006.
+
+\bibitem{Parish:2001:PMC:383259.383292}
+Y.~I.~H. Parish and P.~M\"{u}ller.
+\newblock Procedural modeling of cities.
+\newblock pages 301--308, 2001.
+
+\bibitem{Prusinkiewicz:1996:ABP:235579}
+P.~Prusinkiewicz and A.~Lindenmayer.
+\newblock {\em The Algorithmic Beauty of Plants}.
+\newblock Springer-Verlag New York, Inc., New York, NY, USA, 1996.
+
+\bibitem{Stiny71shapegrammars}
+G.~Stiny, J.~Gips, G.~Stiny, and J.~Gips.
+\newblock Shape grammars and the generative specification of painting and
+  sculpture.
+\newblock In {\em Segmentation of Buildings for 3DGeneralisation. In:
+  Proceedings of the Workshop on generalisation and multiple representation ,
+  Leicester}, 1971.
+
+\bibitem{Zawadzki:2013:GSTF}
+T.~Zawadzki, S.~Nikiel, and E.~Ribeiro.
+\newblock {Procedural 3D Caves, Clouds and Architecture Generation Method Based
+  on Shape Grammar and Morphing}.
+\newblock {\em GSTF Journal on Computing (JoC)}, 3(1), Mar. 2013.
+
+\end{thebibliography}

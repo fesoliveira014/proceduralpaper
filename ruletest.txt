@@ -1,0 +1,21 @@
+start -> S(12,30,12){lot}
+lot -> subDiv("Z",5,7){facades|sidewings}
+
+sidewings -> subDiv("X",3,9){sidewing|term}
+
+sidewing -> S(12,30,8){facades}:0.5
+sidewing -> S(12,20,6){facades}:0.3
+sidewing -> term:0.2
+
+facades -> comp(){front|back|left_facade|right_facade|top|bottom}
+
+front -> term
+back -> term
+left_facade -> term
+right_facade -> term
+top -> term
+bottom -> term
+
+term -> wall
+
+

@@ -14,7 +14,7 @@ builder.buildModel(grammar.ruleset)
 meshbuilder = meshBuilder.MeshBuilder()
 meshbuilder.buildMeshFromTree(builder.tree)
 
-mesh = common.Mesh(meshbuilder.vertexBuffer, meshbuilder.textureBuffer)
+mesh = common.Mesh(meshbuilder.vertexBuffer, meshbuilder.textureBuffer, meshbuilder.normalBuffer)
 
 vertexShader = ""
 with open("shaders/vertex.glsl", "r") as f:

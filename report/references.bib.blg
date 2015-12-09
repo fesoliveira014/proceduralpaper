@@ -1,0 +1,18 @@
+This is 8-bit Big BibTeX version 0.99d
+Implementation:  Microsoft(R) C/C++ for Win32
+Release version: 3.71 (31 May 2005)
+
+The 8-bit codepage and sorting file: 88591lat.csf
+The top-level auxiliary file: .\references.bib.aux
+I found no \citation commands---while reading file .\references.bib.aux
+I found no \bibdata command---while reading file .\references.bib.aux
+I found no \bibstyle command---while reading file .\references.bib.aux
+
+Here's how much of BibTeX's memory you used:
+ Cites:                 0 out of 750
+ Fields:                0 out of 5000
+ Hash table:         5001 out of 5000
+ Strings:              81 out of 4000
+ Free string pool:    489 out of 65000
+ Wizard functions:      0 out of 3000
+(There were 3 error messages)

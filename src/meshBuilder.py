@@ -1,3 +1,5 @@
+import numpy as np
+
 import common
 import meshBuilder
 
@@ -5,6 +7,8 @@ class MeshBuilder():
 	def __init__(self):
 		self.vertexBuffer = []
 		self.textureBuffer = []
+		self.normalBuffer = []
+		self.faces = []
 		self.queue = []
 		self.shapeList = []
 		self.isTraversalOver = False
@@ -13,6 +17,10 @@ class MeshBuilder():
 		self.queue.append(tree)
 		self.buildShapeList()
 		self.buildVertexBuffer()
+		print('number of vertices: ' + str(len(self.vertexBuffer)))
+		print('number of faces: ' + str(len(self.faces)))
+		self.buildNormalsFromFaces()
+		print('number of normals: ' + str(len(self.normalBuffer)))
 
 
 	def buildShapeList(self):
@@ -79,7 +87,7 @@ class MeshBuilder():
 			[pos[0], pos[1], pos[2]],
 			[pos[0], pos[1] + scale[1]*(axis[0]&axis[1]), pos[2] + scale[2]*(axis[0]&axis[2] or axis[1]&axis[2])],
 			[pos[0] + scale[0]*axis[0], pos[1] + scale[1]*axis[1], pos[2] + scale[2]*axis[2]]
-			]
+		]
 
 		textureBufferData = [
 			[0.0, 0.0, index],
@@ -89,7 +97,20 @@ class MeshBuilder():
 			[0.0, 0.0, index],
 			[1.0*(axis[0]&axis[2] or axis[1]&axis[2]), 1.0*(axis[0]&axis[1]), index],
 			[1.0, 1.0, index]
-			]
+		]
+
+		p1 = np.array(vertexBufferData[0], dtype = np.float32)
+		p2 = np.array(vertexBufferData[1], dtype = np.float32)
+		p3 = np.array(vertexBufferData[2], dtype = np.float32)
+		face1 = common.Face(p1,p2,p3)
+
+		p1 = np.array(vertexBufferData[3], dtype = np.float32)
+		p2 = np.array(vertexBufferData[4], dtype = np.float32)
+		p3 = np.array(vertexBufferData[5], dtype = np.float32)
+		face2 = common.Face(p1,p2,p3)
+
+		self.faces.append(face1)
+		self.faces.append(face2)
 
 		# print('kek:' + str(vertexBufferData))
 
@@ -98,3 +119,15 @@ class MeshBuilder():
 
 		for point in textureBufferData:
 			self.textureBuffer.append(point)
+
+	def buildNormalsFromFaces(self):
+		for vertex in self.vertexBuffer:
+			npVertex = np.array(vertex, dtype = np.float32)
+			n = np.zeros(3, dtype = np.float32)
+			i = 0
+			for face in self.faces:
+				if face.containsVertex(npVertex):
+					n += face.normal
+					i +=1
+			n = common.normalize(n / i)
+			self.normalBuffer.append(n)

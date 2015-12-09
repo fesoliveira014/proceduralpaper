@@ -9,13 +9,12 @@ import camera
 
 class Renderer(app.Canvas):
 	def __init__(self, mesh, vertexShader, fragShader):
-		app.Canvas.__init__(self, keys='interactive', size=(800,600))
+		app.Canvas.__init__(self, keys='interactive', size=(1600,900))
 		self.mesh = mesh
 		self.data = mesh.buildBuffer()
 
 		self.program = gloo.Program(vertexShader, fragShader)
 
-		self.view = translate((-5, -5, -10))
 		self.model = np.eye(4, dtype=np.float32)
 		self.projection = perspective(45.0, self.size[0] /
                                       float(self.size[1]), 1.0, 1000.0)
@@ -24,13 +23,23 @@ class Renderer(app.Canvas):
 
 		self.camera = camera.Camera(np.array([0,0,-5], dtype = np.float32), np.array([0,0,0], dtype = np.float32), 45.0, self.size)
 
+		self.view = self.camera.view
+
 		self.program.bind(gloo.VertexBuffer(mesh.buildBuffer()))
 		self.program['u_model'] = self.model
 		self.program['u_view'] = self.view
 		self.program['u_projection'] = self.projection
 
+		self.program['u_lightPos'] = np.array([20, 20, -20], dtype = np.float32);
+		self.program['u_lightColor'] = np.array([1, 1, 1], dtype = np.float32);
+
 		gloo.set_depth_mask(True)
-		gloo.set_state(blend=False, depth_test=True, polygon_offset_fill=True)
+		gloo.set_blend_func('src_alpha', 'one_minus_src_alpha') 
+		gloo.set_blend_equation('func_add')
+		gloo.set_cull_face('back')
+		gloo.set_front_face('cw')
+
+		gloo.set_state(blend=True, depth_test=True, polygon_offset_fill=True)
 
 		self.show()
 
@@ -65,25 +74,28 @@ class Renderer(app.Canvas):
 
 		self.camera.onKeyPress(event)
 		self.camera.update()
-		self.view = self.camera.view
-		self.program['u_view'] = self.view
-
-		self.update()
 
 	def on_key_release(self, event):
 		self.camera.onKeyRelease(event)
 		self.camera.update()
+
+	def on_mouse_press(self, event):
+		self.camera.onMousePress(event)
+		self.camera.update()
+
+	def on_mouse_release(self,event):
+		self.camera.onMouseRelease(event)
+		self.camera.update()
+
+	# def on_mouse_move(self, event):
+	# 	self.camera.onMouseMove(event)
+	# 	self.camera.update()
+
+	def on_draw(self, event):
 		self.view = self.camera.view
 		self.program['u_view'] = self.view
 		self.update()
-
-	# def updateScene(self):
-		
-	# 	# self.update()
-
-	def on_draw(self, event):
-		gloo.clear('black')	
-		# self.updateScene()
+		gloo.clear([0.7, 0.7, 0.7])	
 		self.program.draw('triangles')
 
 
