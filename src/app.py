@@ -6,7 +6,7 @@ import renderer
 
 from vispy import app
 
-grammar = ruleParser.Parser("../ruleset2.txt")
+grammar = ruleParser.Parser("../ruleset.txt")
 
 builder = modelBuilder.ModelBuilder()
 builder.buildModel(grammar.ruleset)
